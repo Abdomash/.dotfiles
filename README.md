@@ -14,7 +14,7 @@ Simple symlink-based dotfiles with Stow.
 
 ## Usage
 
-> ![WARNING]
+> [!WARNING]
 > You need `brew` for macOS:
 > `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
