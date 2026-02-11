@@ -607,9 +607,15 @@ require('lazy').setup {
   -- Comments
   {
     'folke/ts-comments.nvim',
-    opts = {},
+    opts = {
+      mappings = {
+        comment = '<leader>c',
+        comment_line = 'gcc',
+        comment_visual = '<leader>c',
+      },
+    },
     event = 'VeryLazy',
-    enabled = 1,
+    enabled = true,
   },
   {
     'joosepalviste/nvim-ts-context-commentstring',
