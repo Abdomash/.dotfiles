@@ -5,6 +5,15 @@ vim.g.have_nerd_font = true
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+-- Disable default LSP keymaps (we define our own)
+vim.g.lsp_defaults = false
+
+-- Disable language providers (not needed)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Display settings
 vim.opt.termbidi = true
 vim.opt.number = true
