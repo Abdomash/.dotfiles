@@ -23,7 +23,7 @@ Simple symlink-based dotfiles with Stow.
 ```bash
 git clone git@github.com:Abdomash/.dotfiles.git "$HOME/.dotfiles"
 cd "$HOME/.dotfiles"
-./scripts/install.sh # add `--build-neovim` to build Neovim from source
+bash ./scripts/install.sh --build-neovim
 ```
 
 ### 2. **Add this to your shell config (e.g. `~/.bashrc`)**

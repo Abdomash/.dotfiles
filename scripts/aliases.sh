@@ -2,5 +2,5 @@
 
 alias gs="git status"
 alias tmx="tmux-sessionizer"
-alias so="source ~/.bashrc"
+alias so="source $HOME/.bashrc"
 alias va="source .venv/bin/activate"

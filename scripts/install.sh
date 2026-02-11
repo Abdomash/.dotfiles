@@ -26,11 +26,11 @@ install_deps() {
     return
   fi
 
-  "${ROOT_DIR}/scripts/install-deps.sh"
+  bash "${ROOT_DIR}/scripts/install-deps.sh"
 }
 
 build_neovim() {
-  "${ROOT_DIR}/scripts/build-neovim.sh"
+  bash "${ROOT_DIR}/scripts/build-neovim.sh"
 }
 
 stow_packages() {
