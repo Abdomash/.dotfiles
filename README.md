@@ -1,12 +1,28 @@
 # Abdomash Neovim Config
 
-This is my neovim configuration file (`init.lua`) alongside other useful terminal utilities.
+This is my neovim configuration, alongside other useful terminal utilities.
 
 *Inspired by [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).*
 
-### If you're new to Neovim:
+> [!TIP]
+> If you're new to Neovim: [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
 
-[The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
+## Content
+
+Important files and directories:
+
+```
+├── .tmux.conf            # tmux config
+├── .wezterm.lua          # wezterm config
+├── init.lua              # core settings
+├── lua
+│   ├── keymaps.lua       # keymaps
+│   ├── lsp.lua           # LSP + diagnostics
+│   └── plugins.lua       # plugin specs/config
+└── scripts
+    ├── install.sh        # install neovim from source
+    └── tmux-sessionizer  # quick tmux session init script
+```
 
 ## Quick Start
 
