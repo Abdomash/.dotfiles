@@ -66,11 +66,11 @@ verify_install() {
     fail=1
   fi
 
+  # Make these warnings instead of errors since the user may not have all of these installed
   local cmds=(nvim tmux wezterm fzf)
   for cmd in "${cmds[@]}"; do
     if ! command -v "$cmd" >/dev/null 2>&1; then
-      echo "Missing command: $cmd"
-      fail=1
+      echo "Warning: $cmd is not installed or not in PATH."
     fi
   done
 
