@@ -13,40 +13,30 @@ Simple symlink-based dotfiles with GNU Stow.
 - `scripts/` -> setup/build scripts
 - `skills/` -> minimal harness-agnostic skills
 
-## Quick Start
+## Usage
 
 macOS and Debian/Ubuntu are supported.
 
+> [!NOTE]
+> You need `brew` for macOS:
+> `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+**Installation**
 ```bash
 git clone git@github.com:Abdomash/.dotfiles.git "$HOME/.dotfiles"
 cd "$HOME/.dotfiles"
-./scripts/install.sh
+./scripts/install.sh --build-neovim # optional, otherwise it installs neovim binaries
 ```
 
-To build Neovim from source instead of using the package manager:
-
-```bash
-./scripts/install.sh --build-nvim
-```
-
-### Add the following to your shell config (e.g. `~/.bashrc`, `~/.zshrc`, etc.):
-
+**Add to your shell config (e.g. `~/.bashrc`)**
 ```bash
 export PATH="$HOME/.dotfiles/bin:$PATH"
 source "$HOME/.dotfiles/scripts/aliases.sh"
 ```
 
-### Stow Usage
-
-- symlink a package: `stow <package>`
-- remove a package: `stow -D <package>`
-- list stowed packages: `stow -S`
-- list stow packages: `stow -l`
-
-### Link Usage
-
-- symlink a file/directory: `ln -s <source> <destination>`
-- unlink a file/directory: `rm <destination>`
+**`stow` Usage**
+- `stow <package>` symlinks a package
+- `stow -D <package>` removes a package
 
 ## Scripts
 
