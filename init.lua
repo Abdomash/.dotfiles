@@ -342,16 +342,15 @@ require('lazy').setup {
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'lsp: ' .. desc })
           end
-          map('grn', vim.lsp.buf.rename, '[r]e[n]ame')
+          map('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
+          map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+          map('gI', require('telescope.builtin').lsp_implementations, '[g]oto [i]mplementation')
+          map('gt', require('telescope.builtin').lsp_type_definitions, '[g]oto [t]ype definition')
+          map('gD', vim.lsp.buf.declaration, '[g]oto [d]eclaration')
+          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[d]ocument [s]ymbols')
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
           map('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-          map('gra', vim.lsp.buf.code_action, '[g]oto code [a]ction', { 'n', 'x' })
-          map('grr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
-          map('gri', require('telescope.builtin').lsp_implementations, '[g]oto [i]mplementation')
-          map('grd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
-          map('grd', vim.lsp.buf.declaration, '[g]oto [d]eclaration')
-          map('go', require('telescope.builtin').lsp_document_symbols, 'open document symbols')
-          map('gw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'open workspace symbols')
-          map('grt', require('telescope.builtin').lsp_type_definitions, '[g]oto [t]ype definition')
+          map('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction', { 'n', 'x' })
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
