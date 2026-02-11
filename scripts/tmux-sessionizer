@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+DIRS=(
+    "$HOME"
+    "$HOME/projects"
+)
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/projects -mindepth 1 -maxdepth 2 -type d | fzf)
+    selected=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
