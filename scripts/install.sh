@@ -1,7 +1,92 @@
 #!/usr/bin/env bash
 
-git clone --depth 1 --branch v0.11.5 https://www.github.com/neovim/neovim.git $HOME/neovim
+set -euo pipefail
 
-cd $HOME/neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BUILD_NVIM=0
+
+if [[ $# -gt 1 ]]; then
+  echo "Usage: scripts/install.sh [--build-nvim]"
+  exit 1
+fi
+
+if [[ $# -eq 1 ]]; then
+  if [[ "$1" == "--build-nvim" ]]; then
+    BUILD_NVIM=1
+  else
+    echo "Unknown option: $1"
+    echo "Usage: scripts/install.sh [--build-nvim]"
+    exit 1
+  fi
+fi
+
+install_deps() {
+  if [[ $BUILD_NVIM -eq 1 ]]; then
+    INSTALL_NVIM_PACKAGE=0 "${ROOT_DIR}/scripts/install-deps.sh"
+    return
+  fi
+
+  "${ROOT_DIR}/scripts/install-deps.sh"
+}
+
+build_neovim() {
+  "${ROOT_DIR}/scripts/build-neovim.sh"
+}
+
+stow_packages() {
+  local packages=(nvim tmux wezterm bin)
+  for pkg in "${packages[@]}"; do
+    if ! stow --simulate "$pkg" >/dev/null 2>&1; then
+      echo "Stow conflict detected for package: $pkg"
+      echo "Resolve conflicts and re-run."
+      exit 1
+    fi
+  done
+
+  for pkg in "${packages[@]}"; do
+    stow "$pkg"
+  done
+}
+
+verify_install() {
+  local fail=0
+
+  if [[ ! -d "$HOME/.config/nvim" ]]; then
+    echo "Missing: $HOME/.config/nvim"
+    fail=1
+  fi
+
+  if [[ ! -f "$HOME/.tmux.conf" ]]; then
+    echo "Missing: $HOME/.tmux.conf"
+    fail=1
+  fi
+
+  if [[ ! -f "$HOME/.wezterm.lua" ]]; then
+    echo "Missing: $HOME/.wezterm.lua"
+    fail=1
+  fi
+
+  local cmds=(nvim tmux wezterm fzf)
+  for cmd in "${cmds[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Missing command: $cmd"
+      fail=1
+    fi
+  done
+
+  if [[ $fail -ne 0 ]]; then
+    echo "Verification failed."
+    exit 1
+  fi
+
+  echo "Install verified."
+}
+
+install_deps
+
+if [[ $BUILD_NVIM -eq 1 ]]; then
+  build_neovim
+fi
+
+stow_packages
+verify_install

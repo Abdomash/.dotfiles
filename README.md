@@ -1,83 +1,69 @@
-# Abdomash Neovim Config
+# dotfiles
 
-This is my neovim configuration, alongside other useful terminal utilities.
+This is my personal dotfiles repository. It contains neovim config files alongside various useful terminal utilities.
 
-*Inspired by [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).*
+## Structure
 
-> [!TIP]
-> If you're new to Neovim: [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
+Simple symlink-based dotfiles with GNU Stow.
 
-## Content
-
-Important files and directories:
-
-```
-├── .tmux.conf            # tmux config
-├── .wezterm.lua          # wezterm config
-├── init.lua              # core settings
-├── lua
-│   ├── keymaps.lua       # keymaps
-│   ├── lsp.lua           # LSP + diagnostics
-│   └── plugins.lua       # plugin specs/config
-└── scripts
-    ├── install.sh        # install neovim from source
-    └── tmux-sessionizer  # quick tmux session init script
-```
+- `nvim/` -> Neovim config (stow package)
+- `tmux/` -> tmux config (stow package)
+- `wezterm/` -> WezTerm config (stow package)
+- `bin/` -> executables on PATH
+- `scripts/` -> setup/build scripts
+- `skills/` -> minimal harness-agnostic skills
 
 ## Quick Start
 
-### My Quick Script
+macOS and Debian/Ubuntu are supported.
 
 ```bash
-sudo apt update
-sudo apt install make gcc ripgrep unzip git xclip cmake ninja-build gettext curl build-essential
-git clone git@github.com:abdomash/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
-cp "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim/.tmux.conf ~/.tmux.conf
-cp "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim/wezterm.lua ~/.wezterm.lua
-bash "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim/scripts/install.sh
+git clone git@github.com:Abdomash/.dotfiles.git "$HOME/.dotfiles"
+cd "$HOME/.dotfiles"
+./scripts/install.sh
 ```
 
-### Install Neovim
+To build Neovim from source instead of using the package manager:
 
-- Windows
-```powershell
-choco install neovim
+```bash
+./scripts/install.sh --build-nvim
 ```
 
-- MacOS
-```sh
-brew install neovim
+### Add the following to your shell config (e.g. `~/.bashrc`, `~/.zshrc`, etc.):
+
+```bash
+export PATH="$HOME/.dotfiles/bin:$PATH"
+source "$HOME/.dotfiles/scripts/aliases.sh"
 ```
 
-- Linux
-```sh
-sudo add-apt-repository ppa:neovim-ppa/unstable -y
-sudo apt update
-sudo apt install make gcc ripgrep unzip git xclip neovim
-```
+### Stow Usage
 
-- Build neovim from source
-```sh
-bash scripts/install.sh
-```
+- symlink a package: `stow <package>`
+- remove a package: `stow -D <package>`
+- list stowed packages: `stow -S`
+- list stow packages: `stow -l`
 
-### Install Config
+### Link Usage
 
-#### Install Neovim config
-```sh
-git clone git@github.com:abdomash/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
-```
+- symlink a file/directory: `ln -s <source> <destination>`
+- unlink a file/directory: `rm <destination>`
 
-## Extra
+## Scripts
 
-### Tmux config
+- `scripts/install.sh` installs dependencies, stows packages, and verifies the install.
+- `scripts/install-deps.sh` installs dependencies on macOS or Debian/Ubuntu.
+- `scripts/build-neovim.sh` builds Neovim from source.
+- `scripts/aliases.sh` contains shell aliases.
 
-```sh
-cp "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim/.tmux.conf ~/.tmux.conf
-```
+## Skills
 
-### WezTerm config
+Skills are stored as single `skills/<skill>.md` files and can be symlinked/copied into your favorite harness.
 
-```sh
-cp "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim/wezterm.lua ~/.wezterm.lua
-```
+These are minimal, context-agnostic skills to help agents perform common tasks with my stylistic preferences. They are intentionally simple and usable in any context. For example:
+- `skills/commit.md` explains how to write a modular, composable git commits.
+- `skills/pr.md` explains how to write and format PRs.
+- `skills/review-code.md` explains how to conduct a code review.
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for more details.
