@@ -418,18 +418,18 @@ require('lazy').setup {
             },
           },
         },
+        vtsls = {},
+        tailwindcss = {},
+        unocss = {},
+        eslint = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua',
-        'vtsls',
         'prettier',
         'prettierd',
-        'tailwindcss-language-server',
-        'unocss-language-server',
         'eslint_d',
-        'lua-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
