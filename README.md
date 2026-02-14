@@ -9,6 +9,7 @@ Simple symlink-based dotfiles with Stow.
 - `nvim/` -> Neovim config (stow package)
 - `tmux/` -> tmux config (stow package)
 - `wezterm/` -> WezTerm config (stow package)
+- `alacritty/` -> Alacritty config (stow package)
 - `bin/` -> executables on PATH
 - `scripts/` -> setup/build scripts
 
