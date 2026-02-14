@@ -2,11 +2,11 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_NVIM=0
 
 if [[ $# -gt 1 ]]; then
-  echo "Usage: scripts/install.sh [--build-nvim]"
+  echo "Usage: install.sh [--build-nvim]"
   exit 1
 fi
 
@@ -15,7 +15,7 @@ if [[ $# -eq 1 ]]; then
     BUILD_NVIM=1
   else
     echo "Unknown option: $1"
-    echo "Usage: scripts/install.sh [--build-nvim]"
+    echo "Usage: install.sh [--build-nvim]"
     exit 1
   fi
 fi

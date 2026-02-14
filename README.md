@@ -24,7 +24,7 @@ Simple symlink-based dotfiles with Stow.
 ```bash
 git clone git@github.com:Abdomash/.dotfiles.git "$HOME/.dotfiles"
 cd "$HOME/.dotfiles"
-bash ./scripts/install.sh --build-neovim
+bash ./install.sh --build-neovim
 ```
 
 ### 2. **Add this to your shell config (e.g. `~/.bashrc`)**
@@ -36,7 +36,7 @@ source "$HOME/.dotfiles/scripts/aliases.sh"
 
 ## Scripts
 
-- `scripts/install.sh` installs dependencies, stows packages, and verifies the install.
+- `install.sh` installs dependencies, stows packages, and verifies the install.
 - `scripts/install-deps.sh` installs dependencies on macOS or Debian/Ubuntu.
 - `scripts/build-neovim.sh` builds Neovim from source.
 - `scripts/aliases.sh` contains shell aliases.
