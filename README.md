@@ -22,16 +22,16 @@ Simple symlink-based dotfiles with Stow.
 ### 1. **Installation**
 
 ```bash
-git clone git@github.com:Abdomash/.dotfiles.git "$HOME/.dotfiles"
-cd "$HOME/.dotfiles"
+git clone git@github.com:Abdomash/dotfiles.git "$HOME/dotfiles"
+cd "$HOME/dotfiles"
 bash ./install.sh --build-neovim
 ```
 
 ### 2. **Add this to your shell config (e.g. `~/.bashrc`)**
 
 ```bash
-export PATH="$HOME/.dotfiles/bin:$PATH"
-source "$HOME/.dotfiles/scripts/aliases.sh"
+export PATH="$HOME/dotfiles/bin:$PATH"
+source "$HOME/dotfiles/scripts/aliases.sh"
 ```
 
 ## Scripts
