@@ -17,14 +17,17 @@ Simple symlink-based dotfiles with Stow.
 
 > [!WARNING]
 > You need `brew` for macOS:
-> `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+>
+> ```bash
+> bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+> ```
 
 ### 1. **Installation**
 
 ```bash
 git clone git@github.com:Abdomash/dotfiles.git "$HOME/dotfiles"
 cd "$HOME/dotfiles"
-bash ./install.sh --build-neovim
+bash install.sh --build-neovim
 ```
 
 ### 2. **Add this to your shell config (e.g. `~/.bashrc`)**
@@ -43,4 +46,4 @@ source "$HOME/dotfiles/scripts/aliases.sh"
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for more details.
+MIT License.
