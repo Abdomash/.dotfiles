@@ -83,10 +83,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.pack.add({
-  'https://github.com/Skardyy/makurai-nvim',
+  'https://github.com/loctvl842/monokai-pro.nvim',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/lewis6991/gitsigns.nvim',
-  'https://github.com/github/copilot.vim',
   'https://github.com/mason-org/mason.nvim',
   'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/MunifTanjim/nui.nvim',
@@ -97,15 +96,16 @@ vim.pack.add({
   'https://github.com/echasnovski/mini.nvim',
 }, { load = true })
 
-vim.cmd.colorscheme('makurai_dark')
+require('monokai-pro').setup()
+vim.cmd.colorscheme('monokai-pro-spectrum')
 
 -- Treesitter
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('minimal-treesitter'),
-  pattern = ts_languages,
   callback = function(ev)
-    pcall(vim.treesitter.start, ev.buf)
-    vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    if pcall(vim.treesitter.start, ev.buf) then
+      vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
   end,
 })
 
