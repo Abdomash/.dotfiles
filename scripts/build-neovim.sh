@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-NVIM_VERSION="v0.12.2"
+NVIM_VERSION="v0.12.5"
 NVIM_SRC_DIR="${HOME}/neovim"
 NVIM_REPO_URL="https://github.com/neovim/neovim.git"
 
